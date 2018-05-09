@@ -37,47 +37,67 @@
       </div>
     </header>
 
-    <div id="loginRegisterDiv" class="hidden2" style="z-index:1">
-      <form>
-        <table style="width: 100%; height: 30%;">
-          <tr>
-            <br>
-            <td>
-              <span style="color: white; float: right" >Username:</span>
-            </td>
-            <td>
-              <input type="text" name="username" style="width: 80%">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style="color: white; float: right">Password:</span>
-            </td>
-            <td>
-              <input type="password" name="password" style="width: 80%">
-            </td>
-          </tr>
+    <div id="loginRegisterDiv" class="hidden2" style="height: 40%; top: 30%; left: 40%;">
+      <form action="" method="get" id="loginForm">
+        <table border="1" style="width: 100%; height: 30%;">
           <tr>
             <td colspan="2">
+              <span style="font-size: 1em; color: yellow">VITOR CLEAN THIS UP</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="color: white;">
+              Username:
+            </td>
+            <td>
+              <input type="text" name="username" id="usernameLogin" style="width: 80%">
+            </td>
+          </tr>
+          <tr>
+            <td style="color: white;">
+              Password:
+            </td>
+            <td>
+              <input type="password" name="password" id="passwordLogin" style="width: 80%">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="color: white">
               <input type="submit" value="Login" style="width: 73%; display: block; margin: auto;">
             </td>
           </tr>
           <tr>
-            <td colspan="2">
-              <button style="width: 73%; display: block; margin: auto;">Cancel</button>
+            <td colspan="2" class="formLabel" style="text-align: center; color: white;">
+              Or create an account below:
+            </td>
+          </tr>
+      </form>
+      <form action="register.php" method="post" id="registerForm">
+          <tr>
+            <td style="color: white;">
+              Username: <input type="text" name="username" id="usernameRegister"/>
             </td>
           </tr>
           <tr>
-            <td colspan="2" style="text-align: center;">
-              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Don't have an account? Click here to register.</a>
+            <td style="color: white;">
+              Password: <input type="password" name="password" id="passwordRegister"/>
+            </td>
+          </tr>
+          <tr>
+            <td style="color: white;">
+              Confirm password: <input type="password" name="confirm" id="passwordConfirm" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="submit" value="Register" />
             </td>
           </tr>
         </table>
       </form>
     </div>
-    
-    <!--Submit menu?-->
-      
+
+    <!--Submit menu-->
     <div id="submit" class="hidden2" style="font: 1vw; z-index: 1">
       <form method="get">
         <table>
@@ -94,17 +114,10 @@
           <tr>
             <td>
             <br>
-              <input type="file" name="fileupload" value="fileupload" id="fileUpload" style="color:white"> <label for="fileupload"> </label>  
+              <input type="file" name="fileupload" value="fileupload" id="fileUpload" style="color:white"> <label for="fileupload"> </label>
             </td>
          </tr>
-         <tr>  
-            <td>
-            <br>
-              <img id="my_image" src="assets/whiteSpace.gif">
-            </td>
-          </tr>
-          <br>
-          <tr>  
+          <tr>
             <td>
               <textarea rows="3" cols="40" name="memeText" form="usrform">Enter text here...</textarea>
             </td>

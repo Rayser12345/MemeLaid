@@ -72,15 +72,13 @@ a:visited {
 }
 
 #loginRegisterDiv {
-    border-style: solid;
-    border-color:white;
-    position: absolute;
-    width: 30%;
-    height: 225px;
-    left: 40%;
-    right: 25%;
-    top: 250px;
-    background-color: #303133;
+  border-style: solid;
+  border-color:white;
+  position: absolute;
+  width: 30%;
+  left: 40%;
+  top: 250px;
+  background-color: #303133;
 }
 
 #noti {
