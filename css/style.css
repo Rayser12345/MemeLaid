@@ -11,16 +11,25 @@ header {
 }
 
 #nav {
-  height: calc(100% - 43px);
-  width: 25vh;
-  min-width: 266px;
-  background-color: #303133;
-  transition-property: all;
-   transition-duration: 0.5s;
+    top: 4.25%;
+    height: 100%;
+    width: 25vh;
+    min-width: 266px;
+    background-color: #303133;
+    transition-property: all;
+    transition-duration: 0.5s;
+    z-index: 9999;
+    position: fixed;
 }
 
 .hidden {
   transform: translate(-400px, 0px);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
 }
 
 .headerElement {
@@ -41,11 +50,12 @@ header {
   width: 100%;
   height: 10%;
   background-color: transparent;
-  border: none;
   font-size: 2em;
   color: white;
-  outline: none;
   cursor: pointer;
+  text-align: center;
+  z-index: 999;
+  border: none;
 }
 
 #search {
@@ -119,9 +129,8 @@ a:visited {
 .mainMemeContainer {
     width: 100%;
     height: 100%;
-    background-color: red;
-    position: relative;
-    z-index: 98;
+    position: absolute;
+    z-index: 1;
 }
 
 .mainMemeMediaContainer {
@@ -129,10 +138,8 @@ a:visited {
   height: 75%;
   top: 5%;
   left: 15%;
-
   position: absolute;
   z-index: 99;
-  background-color: blue;
 }
 
 .mainMemeMediaContent {
@@ -144,53 +151,30 @@ a:visited {
   background-color: white;
 }
 
+.memeButtonWidth .memeButton {
+    width: 140px;
+    height: 100px;
+}
+.memeButton {
+    width: 100%;
+    height: 70px;
+}
 
-
-#commentsSpace {
-    background: #303133;
+#commentSpace {
+    height: 75%;
+    width: 80%;
     position: absolute;
-    float: right;
-    top: 90%;
-    right: 5%;
-    width: 75%;
+    left: 15%;
+    top: 85%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#comments {
     height: 100%;
-    overflow:auto;
 }
-
-#commment {
-    position: absolute;
-    background: #303133;
-    color: white;
-}
-
-/*
-.meme {
-    position: absolute;
-    border-style: solid;
-    border-color: greenyellow;
-    margin-left: 25em;
-}
-
-.buttonFormat {
-    float: left;
-    border-style: solid;
-    border-color:#0099ff;
-    width: 100px;
-    height: 75px;
-    float: right;
-}
-
-#commentBox {
-    overflow: auto;
-    position: absolute;
-    width: 410px;
-    height: 200px;
-    background: #303133;
-    padding-top: 10px;
-    border-style: solid;
-    border-color:#0099ff;
-    left: 25%;
-}*/
 
 #profilePic {
     right: 25%;
