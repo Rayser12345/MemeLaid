@@ -27,6 +27,7 @@ header {
 }
 
 header {
+    position: absolute;
     position: fixed;
     width: 100%;
     z-index: 9999;
@@ -72,13 +73,15 @@ a:visited {
 }
 
 #loginRegisterDiv {
-  border-style: solid;
-  border-color:white;
-  position: absolute;
-  width: 30%;
-  left: 40%;
-  top: 250px;
-  background-color: #303133;
+    border-style: solid;
+    border-color:white;
+    position: absolute;
+    width: 30%;
+    height: 225px;
+    left: 40%;
+    right: 25%;
+    top: 250px;
+    background-color: #303133;
 }
 
 #noti {
@@ -103,7 +106,6 @@ a:visited {
 }
 
 #searchSpace {
-    background: #303133;
     position: absolute;
     float: right;
     top: 45%;
@@ -115,7 +117,6 @@ a:visited {
 
 #sortBox {
     color: white;
-    background: #303133;
     position: absolute;
     top: 10%;
     right: 5%;
@@ -175,7 +176,53 @@ a:visited {
 }
 
 #profilePic {
+    width: 25%;
+    height: 40%;
     right: 25%;
     position: absolute;
-    top: 35%;
+    top: 145px;
+    background-color: white;
+}
+
+#leftSpace{
+    top: 4.25%;
+    height: 100%;
+    width: 25vh;
+    min-width: 266px;
+    overflow: auto;
+}
+
+#profileAtts{
+    margin-left: 35%;
+    margin-top: 8.5%;
+    position: absolute;
+}
+
+#uploadProfilePic{
+    margin-left: 58.5%;
+    margin-top: 28.25%;
+    position: absolute;
+}
+
+#gallery{
+    margin-left: 15%;
+    margin-right: 250px;
+    margin-top: 30%;
+    width: 75%;
+    height: 1000px;
+}
+
+
+.pmButton{
+    position: absolute;
+    margin-left: 72.25%;
+    margin-top:130px;
+    z-index: 2;
+}
+
+.updateButton{
+    position: absolute;
+    margin-left: 46%;
+    margin-top:130px;
+    z-index: 2;
 }
