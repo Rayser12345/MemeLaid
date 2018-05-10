@@ -24,7 +24,7 @@ $(document).ready(function() {
   });
 
   // Open/close notifications.
-  $("#notiButton").click(function() {
+  $("#notiButton").click(function(){
     $("#noti").toggleClass("hidden2");
   });
 
@@ -33,51 +33,20 @@ $(document).ready(function() {
     $("#loginRegisterDiv").toggleClass("hidden2");
   });
 
-  // Open/close submit.
+  // Open/close submit
   $("#submitButton").click(function() {
     $("#submit").toggleClass("hidden2");
   });
 
-  /*
-  // Show Picture.
-  $("#fileUpload").click(function() {
-    $("#my_image").attr("src",$_GET["fileupload"]);
+  // Show Picture
+  $("#fileUpload").click(function(){
+    $("#my_image").attr("src",$_GET["fileupload"])
   });
-  */
+  //tried
 
-   // Open comment box.
+   // Open comment box
   $("#commentButton").click(function() {
     $("#commentBox").toggleClass("hidden2");
-  });
-
-  $("#loginForm").submit(function() {
-
-    if ($("#usernameLogin").val().length > 0 &&
-        $("#passwordLogin").val().length > 0)
-        return true;
-    else {
-      alert("Please fill in all fields!");
-      return false;
-    }
-
-  });
-
-  $("#registerForm").submit(function() {
-    if ($("#usernameRegister").val().length > 0 &&
-        $("#passwordRegister").val().length > 0 &&
-        $("#passwordConfirm").val().length > 0) {
-
-        // All fields have at least 1 character, check if passwords match.
-        if ($("#passwordRegister").val() == $("#passwordConfirm").val())
-          return true;
-        else {
-          alert("Passwords do not match!");
-          return false;
-        }
-    } else {
-      alert("Please fill in all fields!");
-      return false;
-    }
   });
 
 });
