@@ -1,3 +1,14 @@
+<?php
+
+  if (isset($_SESSION["username"])) {
+    // Logged in.
+    session_start();
+  } else {
+    // Not logged in.
+  }
+
+?>
+
 <html>
 
   <meta charset="UTF-8"/>
@@ -37,52 +48,39 @@
       </div>
     </header>
 
-    <!-login->
-      
-    <div id="loginRegisterDiv" class="hidden2" style="height: 300px; top: 30%; left: 40%;">
-      <form action="" method="get" id="loginForm">
+    <div id="loginRegisterDiv" class="hidden2" style="z-index:1">
+      <form>
         <table style="width: 100%; height: 30%;">
-           <br><br>
           <tr>
-            <td style="color: white; float: right; margin-right: 3.8em">
-              Username: <input type="text" name="username" id="usernameLogin" style="width: 62%;">
+            <br>
+            <td>
+              <span style="color: white; float: right" >Username:</span>
             </td>
-          </tr>
-          <tr>
-            <td style="color: white; float: right; margin-right: 3.8em">
-              Password: <input type="password" name="password" id="passwordLogin" style="width: 63%">
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" style="color: white">
-              <input type="submit" value="Login" style="width: 60%; display: block; margin: auto;">
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" class="formLabel" style="text-align: center; color: white;">
-              Or create an account below:
-            </td>
-          </tr>
-      </form>
-      <form action="register.php" method="post" id="registerForm">
-          <tr>
-            <td style="color: white; float: right; margin-right: 3.8em">
-              Username: <input type="text" name="username" id="usernameRegister" style="width: 62%;"/>
-            </td>
-          </tr>
-          <tr>
-            <td style="color: white;  float: right; margin-right: 3.8em">
-              Password: <input type="password" name="password" id="passwordRegister" style="width: 63%"/>
-            </td>
-          </tr>
-          <tr>
-            <td style="color: white; float: right; margin-right: 3.8em;">
-              Confirm password: <input type="password" name="confirm" id="passwordConfirm" style="width: 51%"/>
+            <td>
+              <input type="text" name="username" style="width: 80%">
             </td>
           </tr>
           <tr>
             <td>
-              <input type="submit" value="Register" style="width: 60%; display: block; margin: auto;"/>
+              <span style="color: white; float: right">Password:</span>
+            </td>
+            <td>
+              <input type="password" name="password" style="width: 80%">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" value="Login" style="width: 73%; display: block; margin: auto;">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button style="width: 73%; display: block; margin: auto;">Cancel</button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: center;">
+              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Don't have an account? Click here to register.</a>
             </td>
           </tr>
         </table>

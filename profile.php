@@ -1,3 +1,14 @@
+<?php
+
+  if (isset($_SESSION["username"])) {
+    // Logged in.
+    session_start();
+  } else {
+    // Not logged in.
+  }
+
+?>
+
 <html>
 
   <meta charset="UTF-8"/>
@@ -37,60 +48,47 @@
       </div>
     </header>
 
-    <!-login->
-      
-    <div id="loginRegisterDiv" class="hidden2" style="height: 300px; top: 30%; left: 40%;">
-      <form action="" method="get" id="loginForm">
+    <div id="loginRegisterDiv" class="hidden2" style="z-index:1">
+      <form>
         <table style="width: 100%; height: 30%;">
-           <br><br>
           <tr>
-            <td style="color: white; float: right; margin-right: 3.8em">
-              Username: <input type="text" name="username" id="usernameLogin" style="width: 62%;">
+            <br>
+            <td>
+              <span style="color: white; float: right" >Username:</span>
             </td>
-          </tr>
-          <tr>
-            <td style="color: white; float: right; margin-right: 3.8em">
-              Password: <input type="password" name="password" id="passwordLogin" style="width: 63%">
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" style="color: white">
-              <input type="submit" value="Login" style="width: 60%; display: block; margin: auto;">
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" class="formLabel" style="text-align: center; color: white;">
-              Or create an account below:
-            </td>
-          </tr>
-      </form>
-      <form action="register.php" method="post" id="registerForm">
-          <tr>
-            <td style="color: white; float: right; margin-right: 3.8em">
-              Username: <input type="text" name="username" id="usernameRegister" style="width: 62%;"/>
-            </td>
-          </tr>
-          <tr>
-            <td style="color: white;  float: right; margin-right: 3.8em">
-              Password: <input type="password" name="password" id="passwordRegister" style="width: 63%"/>
-            </td>
-          </tr>
-          <tr>
-            <td style="color: white; float: right; margin-right: 3.8em;">
-              Confirm password: <input type="password" name="confirm" id="passwordConfirm" style="width: 51%"/>
+            <td>
+              <input type="text" name="username" style="width: 80%">
             </td>
           </tr>
           <tr>
             <td>
-              <input type="submit" value="Register" style="width: 60%; display: block; margin: auto;"/>
+              <span style="color: white; float: right">Password:</span>
+            </td>
+            <td>
+              <input type="password" name="password" style="width: 80%">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="submit" value="Login" style="width: 73%; display: block; margin: auto;">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <button style="width: 73%; display: block; margin: auto;">Cancel</button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: center;">
+              <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Don't have an account? Click here to register.</a>
             </td>
           </tr>
         </table>
       </form>
     </div>
-    
+
     <!--Submit menu?-->
-      
+
     <div id="submit" class="hidden2" style="font: : 1vw; z-index: 1">
       <form method="get">
         <table>
@@ -107,17 +105,17 @@
           <tr>
             <td>
             <br>
-              <input type="file" name="fileupload" value="fileupload" id="fileUpload" style="color:white"> <label for="fileupload"> </label>  
+              <input type="file" name="fileupload" value="fileupload" id="fileUpload" style="color:white"> <label for="fileupload"> </label>
             </td>
          </tr>
-         <tr>  
+         <tr>
             <td>
             <br>
               <img id="my_image" src="assets/whiteSpace.gif">
             </td>
           </tr>
           <br>
-          <tr>  
+          <tr>
             <td>
               <textarea rows="3" cols="40" name="memeText" form="usrform">Enter text here...</textarea>
             </td>
@@ -147,9 +145,9 @@
 
     <div id="noti" class="hidden2" style="z-index: 2">
     </div>
-      
+
     <!---User's Profile--->
-      
+
     <img id="profilePic" src="assets/whiteSpace.gif" style="z-index: 1">
     <div id="memeSpace">
            <br>
@@ -168,7 +166,7 @@
            <br>
            <span style="margin-left: 24em; margin-top: 250px; color: white">UserName:</span>
            <br>
-           <input type="text" name="userName" style="margin-left: 32em"/> 
+           <input type="text" name="userName" style="margin-left: 32em"/>
            <br>
            <span style="margin-left: 24em; color: white">Country:</span>
            <br>
@@ -176,31 +174,31 @@
            <br>
            <span style="margin-left: 24em; color: white">PassWord:</span>
            <br>
-           <input type="text" name="country" style="margin-left: 32em"/> 
+           <input type="text" name="country" style="margin-left: 32em"/>
            <br>
            <span style="margin-left: 24em; color: white">Email:</span>
            <br>
-           <input type="text" name="country" style="margin-left: 32em"/> 
+           <input type="text" name="country" style="margin-left: 32em"/>
            <br>
            <span style="margin-left: 24em; color: white">Gender:</span>
            <br>
-           <input type="text" name="country" style="margin-left: 32em"/> 
+           <input type="text" name="country" style="margin-left: 32em"/>
            <br>
            <span style="margin-left: 24em; color: white">BirthDay:</span>
            <br>
-           <input type="text" name="country" style="margin-left: 32em"/> 
+           <input type="text" name="country" style="margin-left: 32em"/>
            <br>
            <br>
            <button style="width: 15%; margin-left: 32em">Update</button>
            <br>
            <button style="width: 15%; margin-left: 32em">Pm</button>
            <br>
-           <input type="file" name="fileupload" value="fileupload" id="fileUpload" style="color:white; margin-left: 54em;"> <label for="fileupload"> </label>  
+           <input type="file" name="fileupload" value="fileupload" id="fileUpload" style="color:white; margin-left: 54em;"> <label for="fileupload"> </label>
     </div>
-      
+
     <!---User's Gallery--->
     <div id="commentsSpace">
     </div>
-      
+
   </body>
 </html>
