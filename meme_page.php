@@ -2,30 +2,34 @@
 
   session_start();
 
-  require "php/connection.php";
+  require "../php/connection.php";
 
-  $channelId = array();
-  $channelName = array();
-  $channelNumOfSubs = array();
-  $channelNumOfPosts = array();
-  $channelOwner = array();
-  $channelDescription = array();
+  $postId = basename($_SERVER['PHP_SELF']);
+  $postId = substr($postId, 0, strrpos($postId, "."));
+  $postId = (int) $postId;
 
-  // Get channels from database.
-  $stmt = $conn->prepare("SELECT * FROM Channel");
+  $postTitle = "";
+  $postDate = "";
+  $postMediaPath = "";
+  $postAuthor = 0;
+  $postChannel = 0;
+  $postUrl = "";
+
+  // Get info from database.
+
+  $stmt = $conn->prepare("SELECT * FROM POST WHERE post_id=?");
+  $stmt->bind_param("d", $postId);
   if ($stmt->execute()) {
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
-      $i = 0;
-      while($row = $result->fetch_assoc()) {
-        $channelId[$i] = $row["chan_id"];
-        $channelName[$i] = $row["chan_name"];
-        $channelNumOfSubs[$i] = $row["chan_numOfSubs"];
-        $channelNumOfPosts[$i] = $row["chan_numOfPosts"];
-        $channelOwner[$i] = $row["chan_owner"];
-        $channelDescription[$i] = $row["chan_description"];
-        $i++;
-      }
+      $row = $result->fetch_array();
+
+      $postTitle = $row["post_title"];
+      $postDate = $row["post_date"];
+      $postMediaPath = $row["post_media_path"];
+      $postAuthor = $row["post_author"];
+      $postChannel = $row["post_chan"];
+      $postUrl = $row["post_url"];
     }
   }
 
@@ -39,18 +43,18 @@
   <head>
     <title>Memelaid - Where memes are laid</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700'
     rel='stylesheet' type='text/css'>
     <link rel="icon" href="pepe.ico">
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/index.js"></script>
   </head>
   <body>
     <header>
       <div class="headerContent">
-        <img id="navControl" class="headerElement" src="assets/open_nav.png"
+        <img id="navControl" class="headerElement" src="../assets/open_nav.png"
         style="cursor: pointer"/>
         <form onsubmit="" class="headerElement">
           <table class="headerElement">
@@ -73,17 +77,71 @@
               ?>
             </td>
             <td>
-              <img id="changeTheme" class="headerElement" src="assets/brush.png"
+              <img id="changeTheme" class="headerElement" src="../assets/brush.png"
               style="cursor: pointer"/>
             </td>
           </tr>
         </table>
 
-        <img src="assets/message-squared.png" id="notiButton" class="headerElement" style="cursor: pointer">
+        <img src="../assets/message-squared.png" id="notiButton" class="headerElement" style="cursor: pointer">
       </div>
     </header>
 
-    <div id="loginRegisterDiv" class="hidden2" style="height: 300px; top: 30%; left: 40%;">
+    <!-- Meme area -->
+    <div class="mainMemeContainer">
+      <div class="mainMemeMediaContainer">
+        <table style="width: 100%;">
+          <tr style="width: 100%;">
+            <td style="width: 100%; text-align: center; font-size: 3em;">
+              <?php
+                echo $postTitle;
+              ?>
+            </td>
+          </tr>
+        </table>
+        <table style="display: inline-table; margin-left: 10%; margin-top: 10%;">
+          <tr class="memeButtonWidth">
+            <td>
+              <button id="previousMeme" class="memeButton">Previous</button>
+            </td>
+          </tr>
+          <tr class="memeButtonWidth">
+            <td>
+              <button id="dislikeMeme" class="memeButton">Dislike</button>
+            </td>
+          </tr>
+          <tr class="memeButtonWidth">
+            <td>
+              <button id="reportMeme" class="memeButton">Report</button>
+            </td>
+          </tr>
+        </table>
+        <table style="float: right; display: inline-table; margin-right: 10%; margin-top: 10%;">
+          <tr class="memeButtonWidth">
+            <td>
+              <button id="nextMeme" class="memeButton">Next</button>
+            </td>
+          </tr>
+          <tr class="memeButtonWidth">
+            <td>
+              <button id="likeMeme" class="memeButton">Like</button>
+            </td>
+          </tr>
+          <tr class="memeButtonWidth">
+            <td>
+              <button id="shareMeme" class="memeButton">Share</button>
+            </td>
+          </tr>
+        </table>
+        <div class="mainMemeMediaContent">
+            <?php
+              echo "<img src=\"$postMediaPath\" style=\"margin-left: auto; margin-right: auto; display: block; max-width:100%; max-height: 100%;\"/>"
+            ?>
+        </div>
+      </div>
+    </div>
+
+   <div id="loginRegisterDiv" class="hidden2" style="height: 300px; top: 30%; left: 40%;">
       <form action="php/login.php" method="post" id="loginForm">
         <table style="width: 100%; height: 30%;">
             <br><br>
@@ -138,9 +196,10 @@
       </form>
     </div>
 
-    <!--Submit menu-->
+    <!-- Submit menu?-->
+
     <div id="submit" class="hidden2" style="font: 1vw;">
-      <form action="php/submitMeme.php" method="post" enctype="multipart/form-data" id="submitForm">
+      <form action="../php/submitMeme.php" method="post" enctype="multipart/form-data" id="submitForm">
         <table style="width: 100%;">
           <tr>
             <td style="color: yellow; font-size: 3em; text-align: center;">
@@ -174,7 +233,7 @@
           </tr>
           <tr>
             <td>
-              <img src="assets/submit-placeholder.png" id="previewFile" style="display:block; width: 100%; height: auto;"/>
+              <img src="../assets/submit-placeholder.png" id="previewFile" style="display:block; width: 100%; height: auto;"/>
             </td>
           </tr>
         </table>
@@ -185,7 +244,7 @@
     <div id="nav" class="hidden">
         <div id="navContent">
 
-          <a href="index.php"><button class="navButton" type="button">Home</button></a>
+          <a href="../index.php"><button class="navButton" type="button">Home</button></a>
 
           <!-- Only show login button if user is NOT logged in. -->
           <?php
@@ -210,7 +269,7 @@
           <!-- Only show logout button if user is logged in. -->
           <?php
             if (isset($_SESSION["username"]))
-              echo "<a href=\"php/logout.php\"><button class=\"navButton\" type=\"button\">Logout</button></a>;"
+              echo "<a href=\"../php/logout.php\"><button class=\"navButton\" type=\"button\">Logout</button></a>;"
           ?>
 
         </div>
@@ -219,28 +278,34 @@
     <div id="noti" class="hidden2" style="z-index: 2">
     </div>
 
-    <div id="spotlightContainer">
-      <div id="spotlight">
-        <table border="1">
-          <tr>
-            <td>
-              title 1
-            </td>
-            <td>
-              title 2
-            </td>
-          </tr>
-          <tr>
-            <td>
-              thumb 1
-            </td>
-            <td>
-              thumb 2
-            </td>
-          </tr>
-        </table>
+    <!-- Comments area -->
+    <div id="commentSpace">
+      <div id="comments">
+          <table border="1">
+            <tr>
+              <td>
+                Username placeholder
+              </td>
+            </tr>
+            <tr>
+              <td>
+                profile pic placeholder
+              </td>
+              <td>
+                comment placeholder
+              </td>
+              <td>
+                reply placeholder
+              </td>
+              <td>
+                like placeholder
+              </td>
+              <td>
+                dislike placeholder
+              </td>
+            </tr>
+          </table>
       </div>
     </div>
-
   </body>
 </html>
